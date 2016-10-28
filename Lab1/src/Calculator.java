@@ -4,13 +4,13 @@ import java.util.regex.Pattern;
 
 // Lab1
 
-class Terms{//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½+Îªï¿½Ö½ï¿½ï¿½ßµï¿½term
+class Terms{//¶¨ÒåÁËÒ»¸öÒÔ+Îª·Ö½çÏßµÄterm
 	int nums = 1;
 	String tempnums;
 	String vars;
-	int varflag = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
-	int flag = 0;//ï¿½ï¿½ï¿½ï¿½Ê½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½1
-	int total = 0;//termï¿½Ä¸ï¿½ï¿½ï¿½
+	int varflag = 0;//ÏîÖĞÓĞ±äÁ¿ÔòÖÃ1
+	int flag = 0;//¶àÏîÊ½ºÏ·¨ÔòÖÃ1
+	int total = 0;//termµÄ¸öÊı
 }
 public class Calculator {
 	public static Terms[] expression(String polynomial){
@@ -23,11 +23,9 @@ public class Calculator {
         int not = 1;//number of terms
         int length = polynomial.length();
         
-        for (int i=0; i<length; i++){//ï¿½ï¿½ï¿½ï¿½termï¿½ï¿½ï¿½ï¿½
+        for (int i=0; i<length; i++){//¼ÆËãterm¸öÊı
         	if(polynomial.charAt(i) == '+')
-        	{
         		not ++;
-        	}
         }
         //System.out.println(not);
         Terms[] term = new Terms[not];
@@ -36,19 +34,19 @@ public class Calculator {
         }
         term[0].total = not;
         
-        if(!m.matches()){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½1
-        	System.out.println("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ë£ºï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[A-Za-z0-9+*]");
+        if(!m.matches()){//¼ì²âÊäÈëºÏ·¨ĞÔ1
+        	System.out.println("·Ç·¨ÊäÈë£º¶àÏîÊ½½öÏŞÓÚ[A-Za-z0-9+*]");
         	return term;
         }
-        for (int i=0; i<length-1; i++){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½2
+        for (int i=0; i<length-1; i++){//¼ì²âÊäÈëºÏ·¨ĞÔ2
         	if(((polynomial.charAt(i) >= '0' && polynomial.charAt(i) <= 'z') && (polynomial.charAt(i+1) >= 'A' && polynomial.charAt(i+1) <= 'z')) || ((polynomial.charAt(i) >= 'A' && polynomial.charAt(i) <= 'z') && (polynomial.charAt(i+1) >= '0' && polynomial.charAt(i+1) <= 'z'))){
-        		System.out.println("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ë£ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½*ï¿½ï¿½ï¿½ï¿½");
+        		System.out.println("·Ç·¨ÊäÈë£º¶à¸öÁ¿ÇëÊ¹ÓÃ*Á¬½Ó");
         		return term;
         	}
         }
-        for (int i=0; i<length-1; i++){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½3
+        for (int i=0; i<length-1; i++){//¼ì²âÊäÈëºÏ·¨ĞÔ3
         	if((polynomial.charAt(i) == '+' && polynomial.charAt(i+1) == '+') || (polynomial.charAt(i) == '*' && polynomial.charAt(i+1) == '*') || (polynomial.charAt(length-1) == '+' || polynomial.charAt(length-1) == '*') || (polynomial.charAt(0) == '+' || polynomial.charAt(0) == '*')){
-        		System.out.println("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ë£ºï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Ğ§");
+        		System.out.println("·Ç·¨ÊäÈë£º¶àÏîÊ½ÎŞĞ§");
         		return term;
         	}
         }
@@ -57,11 +55,9 @@ public class Calculator {
 
         
         int count = 0;
-        for (int i=0; i<length; i++){//ï¿½ï¿½ï¿½ï¿½termï¿½ï¿½ï¿½ï¿½
+        for (int i=0; i<length; i++){//¼ÆËãterm¸öÊı
         	if(polynomial.charAt(i) == '+')
-        	{
         		count ++;
-        	}
         	else if(polynomial.charAt(i) >= '0' && polynomial.charAt(i) <= '9'){
         		if(i == length - 1){
         			if(term[count].tempnums == null){
@@ -106,36 +102,44 @@ public class Calculator {
         			term[count].vars = term[count].vars + String.valueOf(polynomial.charAt(i));
         			term[count].varflag = 1;
         	}
-        	else{
+        	else 
         		continue;
-        		}
         }
 		return term;
 	}
 	
 	public static Terms[] simplify(Terms[] term){
+		
+		
+		
 		return term;
 	}
 	
 	public static Terms[] derivative(Terms[] term){
+		
+		
+		
 		return term;
 	}
 	
 	public static void main(String [] args) {
 		Scanner input = new Scanner(System.in); 
-    while (true) { 
-    	
-    		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½:");
-            String polynomial = input.nextLine(); 
-            if (polynomial.equals("exit"))break; 
-            //System.out.println(polynomial);
-            Terms[] term = expression(polynomial);
-            
-            if(term[0].flag == 0) continue;
-            
-            System.out.println(term[0].nums);
-            System.out.println(term[0].vars);   
-    }
+        while (true) { 
+        	
+        		System.out.println("ÇëÊäÈë±í´ïÊ½:");
+                String polynomial = input.nextLine(); 
+                if (polynomial.equals("exit")) break; 
+                //System.out.println(polynomial);
+                Terms[] term = expression(polynomial);
+                
+                if(term[0].flag == 0) continue;
+                
+                System.out.println(term[0].nums);
+                System.out.println(term[0].vars);
+                
+
+                
+        }
         input.close();
 	}
 
