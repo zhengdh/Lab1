@@ -107,7 +107,8 @@ public class Calculator {
         			term[count].varflag = 1;
         	}
         	else{
-        		continue;}
+        		continue;
+        		}
         }
 		return term;
 	}
@@ -122,19 +123,19 @@ public class Calculator {
 	
 	public static void main(String [] args) {
 		Scanner input = new Scanner(System.in); 
-        while (true) { 
-        	
-        		System.out.println("��������ʽ:");
-                String polynomial = input.nextLine(); 
-                if (polynomial.equals("exit")) break; 
-                //System.out.println(polynomial);
-                Terms[] term = expression(polynomial);
-                
-                if(term[0].flag == 0) continue;
-                
-                System.out.println(term[0].nums);
-                System.out.println(term[0].vars);   
-        }
+    while (true) { 
+    	
+    		System.out.println("��������ʽ:");
+            String polynomial = input.nextLine(); 
+            if (polynomial.equals("exit"))break; 
+            //System.out.println(polynomial);
+            Terms[] term = expression(polynomial);
+            
+            if(term[0].flag == 0) continue;
+            
+            System.out.println(term[0].nums);
+            System.out.println(term[0].vars);   
+    }
         input.close();
 	}
 
